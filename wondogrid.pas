@@ -1,3 +1,4 @@
+//개인 그리드 프로젝트
 //20210930,원도연,그리드 컴포넌트 작성
 unit wondogrid;
 
@@ -17,7 +18,7 @@ type
     function SetColumn(StrColumn : AnsiString) : Boolean;                       //컬럼 셋팅, 각 필드는','로 구분함
     function SetRow(StrRow: AnsiString): Boolean;                               //로우 데이터 셋팅
     function FindRow(Key: AnsiString;KeyColumn : integer): integer;             //키값의 로우값을 리턴
-    procedure DeleteRow(ARow: Integer);                      //로우 데이터 삭제
+    procedure DeleteRow(ARow: Integer);                                         //로우 데이터 삭제
     function DeleteValRow(ColNo: Integer; DelVal: AnsiString): integer;             //특정 값을 삭제
     function GetValSum(ColNo: Integer; FindVal: AnsiString): integer;               //특정값의 갯수 리턴
     function ValReplace(ColNo: Integer; BaseVal,ReplaceVal: AnsiString): Boolean;   //특정값을 수정값으로 바꿔줌
