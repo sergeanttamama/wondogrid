@@ -1,3 +1,4 @@
+//20210930,원도연,그리드 컴포넌트 작성
 unit wondogrid;
 
 interface
