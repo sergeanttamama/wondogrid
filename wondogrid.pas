@@ -15,10 +15,10 @@ type
     { Protected declarations }
   public
     { Public declarations }
-    function SetColumn(StrColumn : AnsiString) : Boolean;                       //컬럼 셋팅, 각 필드는','로 구분함
-    function SetRow(StrRow: AnsiString): Boolean;                               //로우 데이터 셋팅
-    function FindRow(Key: AnsiString;KeyColumn : integer): integer;             //키값의 로우값을 리턴
-    procedure DeleteRow(ARow: Integer);                                         //로우 데이터 삭제
+    function SetColumn(StrColumn : AnsiString) : Boolean;                           //컬럼 셋팅, 각 필드는','로 구분함
+    function SetRow(StrRow: AnsiString): Boolean;                                   //로우 데이터 셋팅
+    function FindRow(Key: AnsiString;KeyColumn : integer): integer;                 //키값의 로우값을 리턴
+    procedure DeleteRow(ARow: Integer);                                             //로우 데이터 삭제
     function DeleteValRow(ColNo: Integer; DelVal: AnsiString): integer;             //특정 값을 삭제
     function GetValSum(ColNo: Integer; FindVal: AnsiString): integer;               //특정값의 갯수 리턴
     function ValReplace(ColNo: Integer; BaseVal,ReplaceVal: AnsiString): Boolean;   //특정값을 수정값으로 바꿔줌
@@ -35,59 +35,66 @@ begin
   RegisterComponents('Standard', [twondogrid]);
 end;
 
-{ twondogrid }
 
-function twondogrid.SetColumn(StrColumn: AnsiString): Boolean;//컬럼 셋팅, 각 필드는','로 구분함
+
+function twondogrid.SetColumn(StrColumn: AnsiString): Boolean;//컬럼 셋팅 함수, 각 필드는','로 구분함, StrColumn : 컬럼들의 이름이 담긴 문자열이 들어오게됨.
 var
   tmpstrlist : TStringList;
   i,r : integer;
 begin
   try
-    result := true;
-    self.RowCount  := 0;
-    //self.FixedRows := 0;
-    tmpstrlist := TStringlist.Create;
-    tmpstrlist.Clear;
-    tmpstrlist.Delimiter := ',';
-    tmpstrlist.DelimitedText := StrColumn;
-    Self.ColCount := tmpstrlist.Count;
-    for i := 0 to tmpstrlist.Count-1 do
-    begin
-      Self.Cells[i,0] := tmpstrlist[i];
+    try
+      result := true;
+      self.RowCount  := 0;
+      tmpstrlist := TStringlist.Create;
+      tmpstrlist.Clear;
+      tmpstrlist.Delimiter := ',';
+      tmpstrlist.DelimitedText := StrColumn;
+      Self.ColCount := tmpstrlist.Count;
+      for i := 0 to tmpstrlist.Count-1 do
+      begin
+        Self.Cells[i,0] := tmpstrlist[i];
+      end;
+    except
+      result := False;
     end;
-  except
-    result := False;
+  finally
+    tmpstrlist.Free;
   end;
 end;
 
-function twondogrid.SetRow(StrRow: AnsiString): Boolean;//로우 데이터 셋팅
+function twondogrid.SetRow(StrRow: AnsiString): Boolean;//로우 데이터 셋팅 함수,  StrRow인자에 현재 행의 로우 데이터를 받아오게 됨, ',' 문자로 구분
 var
   tmpstrlist : TStringList;
   i,r : integer;
 begin
   try
-    result := true;
-    i := self.RowCount;
-    self.RowCount := self.RowCount + 1;
-    tmpstrlist := TStringlist.Create;
-    tmpstrlist.Clear;
-    tmpstrlist.Delimiter := ',';
-    tmpstrlist.DelimitedText := StrRow;
-    Self.ColCount := tmpstrlist.Count;
-    for r := 1 to self.ColCount do
-    begin
-      Self.Cells[r-1,i] := tmpstrlist[r-1];
+    try
+      result := true;
+      i := self.RowCount;
+      self.RowCount := self.RowCount + 1;
+      tmpstrlist := TStringlist.Create;
+      tmpstrlist.Clear;
+      tmpstrlist.Delimiter := ',';
+      tmpstrlist.DelimitedText := StrRow;
+      Self.ColCount := tmpstrlist.Count;
+      for r := 1 to self.ColCount do
+      begin
+        Self.Cells[r-1,i] := tmpstrlist[r-1];
+      end;
+      if self.rowcount > 1 then
+      begin
+        self.FixedRows := 1;
+      end;
+    except
+      result := False;
     end;
-    if self.rowcount > 1 then
-    begin
-      self.FixedRows := 1;
-    end;
-  except
-    result := False;
+  finally
+    tmpstrlist.free;
   end;
 end;
 
-function twondogrid.FindRow(Key: AnsiString;KeyColumn : integer): integer;//키값의 로우값을 리턴
+function twondogrid.FindRow(Key: AnsiString;KeyColumn : integer): integer;//키값의 로우값을 리턴하는 함수, Key 인자에 찾을 값을, KeyColumn에 키 컬럼을 넣음
 var
   returnrow : integer;
   i,r : integer;
@@ -104,7 +111,7 @@ begin
   end;
 end;
 
-procedure twondogrid.DeleteRow(ARow: Integer);//로우 데이터 삭제
+procedure twondogrid.DeleteRow(ARow: Integer);//로우 데이터 삭제 함수, ARow 인자에 받은 row를 삭제한다
 var
   i: Integer;
 begin
@@ -115,7 +122,7 @@ begin
   Self.RowCount := Self.RowCount - 1;
 end;
 
-function twondogrid.GetValSum(ColNo : Integer; FindVal : AnsiString) : integer;//특정 값을 삭제
+function twondogrid.GetValSum(ColNo : Integer; FindVal : AnsiString) : integer;//특정값의 갯수를 리턴하는 함수, 찾고자 할 컬럼을 ColNo로 받고,
 var
   i, r : integer;
 begin
@@ -132,7 +139,7 @@ end;
 
 
 
-function twondogrid.DeleteValRow(ColNo : Integer; DelVal : AnsiString) : integer;//특정값의 갯수 리턴
+function twondogrid.DeleteValRow(ColNo : Integer; DelVal : AnsiString) : integer;//특정 값을 삭제하는 함수, ColNo 인자에 컬럼값을, FindVal 인자에 찾을 문자열을 입력
 var
   i, r : integer;
 begin
@@ -149,7 +156,7 @@ end;
 
 
 
-function twondogrid.ValReplace(ColNo : Integer; BaseVal, ReplaceVal : AnsiString) : Boolean;//특정값을 수정값으로 바꿔줌
+function twondogrid.ValReplace(ColNo : Integer; BaseVal, ReplaceVal : AnsiString) : Boolean;//특정값을 수정값으로 바꿔주는 함수, ColNo에 바꿀 값을 찾는 컬럼, BaseVal에 바꿀대상에 되는 문자열, Replaceval에 바꿀 문자열을 받게 됨
 var
   i, r : integer;
 begin
