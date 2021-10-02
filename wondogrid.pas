@@ -35,8 +35,6 @@ begin
   RegisterComponents('Standard', [twondogrid]);
 end;
 
-
-
 function twondogrid.SetColumn(StrColumn: AnsiString): Boolean;//컬럼 셋팅 함수, 각 필드는','로 구분함, StrColumn : 컬럼들의 이름이 담긴 문자열이 들어오게됨.
 var
   tmpstrlist : TStringList;
@@ -137,8 +135,6 @@ begin
   Result := r;
 end;
 
-
-
 function twondogrid.DeleteValRow(ColNo : Integer; DelVal : AnsiString) : integer;//특정 값을 삭제하는 함수, ColNo 인자에 컬럼값을, FindVal 인자에 찾을 문자열을 입력
 var
   i, r : integer;
@@ -153,8 +149,6 @@ begin
   end;
   Result := r;
 end;
-
-
 
 function twondogrid.ValReplace(ColNo : Integer; BaseVal, ReplaceVal : AnsiString) : Boolean;//특정값을 수정값으로 바꿔주는 함수, ColNo에 바꿀 값을 찾는 컬럼, BaseVal에 바꿀대상에 되는 문자열, Replaceval에 바꿀 문자열을 받게 됨
 var
