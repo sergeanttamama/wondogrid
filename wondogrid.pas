@@ -35,7 +35,8 @@ begin
   RegisterComponents('Standard', [twondogrid]);
 end;
 
-function twondogrid.SetColumn(StrColumn: AnsiString): Boolean;//컬럼 셋팅 함수, 각 필드는','로 구분함, StrColumn : 컬럼들의 이름이 담긴 문자열이 들어오게됨.
+//컬럼 셋팅 함수, 각 필드는','로 구분함, StrColumn : 컬럼들의 이름이 담긴 문자열이 들어오게됨.
+function twondogrid.SetColumn(StrColumn: AnsiString): Boolean;
 var
   tmpstrlist : TStringList;
   i,r : integer;
@@ -61,7 +62,8 @@ begin
   end;
 end;
 
-function twondogrid.SetRow(StrRow: AnsiString): Boolean;//로우 데이터 셋팅 함수,  StrRow인자에 현재 행의 로우 데이터를 받아오게 됨, ',' 문자로 구분
+//로우 데이터 셋팅 함수,  StrRow인자에 현재 행의 로우 데이터를 받아오게 됨, ',' 문자로 구분
+function twondogrid.SetRow(StrRow: AnsiString): Boolean;
 var
   tmpstrlist : TStringList;
   i,r : integer;
@@ -92,7 +94,8 @@ begin
   end;
 end;
 
-function twondogrid.FindRow(Key: AnsiString;KeyColumn : integer): integer;//키값의 로우값을 리턴하는 함수, Key 인자에 찾을 값을, KeyColumn에 키 컬럼을 넣음
+//키값의 로우값을 리턴하는 함수, Key 인자에 찾을 값을, KeyColumn에 키 컬럼을 넣음
+function twondogrid.FindRow(Key: AnsiString;KeyColumn : integer): integer;
 var
   returnrow : integer;
   i,r : integer;
@@ -109,7 +112,8 @@ begin
   end;
 end;
 
-procedure twondogrid.DeleteRow(ARow: Integer);//로우 데이터 삭제 함수, ARow 인자에 받은 row를 삭제한다
+//로우 데이터 삭제 함수, ARow 인자에 받은 row를 삭제한다
+procedure twondogrid.DeleteRow(ARow: Integer);
 var
   i: Integer;
 begin
@@ -120,7 +124,8 @@ begin
   Self.RowCount := Self.RowCount - 1;
 end;
 
-function twondogrid.GetValSum(ColNo : Integer; FindVal : AnsiString) : integer;//특정값의 갯수를 리턴하는 함수, 찾고자 할 컬럼을 ColNo로 받고,
+//특정값의 갯수를 리턴하는 함수, 찾고자 할 컬럼을 ColNo로 받고,
+function twondogrid.GetValSum(ColNo : Integer; FindVal : AnsiString) : integer;
 var
   i, r : integer;
 begin
@@ -135,7 +140,8 @@ begin
   Result := r;
 end;
 
-function twondogrid.DeleteValRow(ColNo : Integer; DelVal : AnsiString) : integer;//특정 값을 삭제하는 함수, ColNo 인자에 컬럼값을, FindVal 인자에 찾을 문자열을 입력
+//특정 값을 삭제하는 함수, ColNo 인자에 컬럼값을, FindVal 인자에 찾을 문자열을 입력
+function twondogrid.DeleteValRow(ColNo : Integer; DelVal : AnsiString) : integer;
 var
   i, r : integer;
 begin
@@ -150,7 +156,8 @@ begin
   Result := r;
 end;
 
-function twondogrid.ValReplace(ColNo : Integer; BaseVal, ReplaceVal : AnsiString) : Boolean;//특정값을 수정값으로 바꿔주는 함수, ColNo에 바꿀 값을 찾는 컬럼, BaseVal에 바꿀대상에 되는 문자열, Replaceval에 바꿀 문자열을 받게 됨
+//특정값을 수정값으로 바꿔주는 함수, ColNo에 바꿀 값을 찾는 컬럼, BaseVal에 바꿀대상에 되는 문자열, Replaceval에 바꿀 문자열을 받게 됨
+function twondogrid.ValReplace(ColNo : Integer; BaseVal, ReplaceVal : AnsiString) : Boolean;
 var
   i, r : integer;
 begin
