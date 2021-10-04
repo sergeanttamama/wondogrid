@@ -1,11 +1,12 @@
 //개인 그리드 프로젝트
 //20210930,원도연,그리드 컴포넌트 작성
+//20211004,원도연,QueryToGrid 함수 추가
 unit wondogrid;
 
 interface
 
 uses
-  SysUtils, Classes, Controls, Grids;
+  SysUtils, Classes, Controls, Grids, DBTables;
 
 type
   twondogrid = class(TStringGrid)
@@ -22,6 +23,7 @@ type
     function DeleteValRow(ColNo: Integer; DelVal: AnsiString): integer;             //특정 값을 삭제
     function GetValSum(ColNo: Integer; FindVal: AnsiString): integer;               //특정값의 갯수 리턴
     function ValReplace(ColNo: Integer; BaseVal,ReplaceVal: AnsiString): Boolean;   //특정값을 수정값으로 바꿔줌
+    function QueryToGrid(Query: TQuery): Boolean;
   published
     { Published declarations }
   end;
@@ -173,6 +175,14 @@ begin
   except
     result := False;
   end;
+end;
+
+//Query 컴포넌트를 받아, 해당 필드와 로우를 자동으로 셋팅, 미완성 함수..! 현재 작업중..!
+function twondogrid.QueryToGrid(Query : TQuery) : Boolean;
+var
+  i, r : integer;
+begin
+
 end;
 
 end.
