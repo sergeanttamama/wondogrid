@@ -184,6 +184,10 @@ var
   FieldCount : Integer;
 begin
   FieldCount := Query.FieldCount;
+  for i := 0 to FieldCount do
+  begin
+
+  end;
 end;
 
 end.
