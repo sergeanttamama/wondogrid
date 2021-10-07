@@ -181,12 +181,17 @@ end;
 function twondogrid.QueryToGrid(Query : TQuery) : Boolean;
 var
   i, r : integer;
-  FieldCount : Integer;
+  FieldCount  : Integer;
+  RecordCount : Integer;
 begin
-  FieldCount := Query.FieldCount;
-  for i := 0 to FieldCount do
+  FieldCount  := Query.FieldCount;
+  RecordCount := Query.RecordCount;
+  for i := 0 to FieldCount-1 do
   begin
+    for r := 0 to RecordCount-1 do
+    begin
 
+    end;
   end;
 end;
 
