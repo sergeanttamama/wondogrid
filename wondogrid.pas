@@ -23,7 +23,8 @@ type
     function DeleteValRow(ColNo: Integer; DelVal: AnsiString): integer;             //특정 값을 삭제
     function GetValSum(ColNo: Integer; FindVal: AnsiString): integer;               //특정값의 갯수 리턴
     function ValReplace(ColNo: Integer; BaseVal,ReplaceVal: AnsiString): Boolean;   //특정값을 수정값으로 바꿔줌
-    function QueryToGrid(Query: TQuery): Boolean;                                     //Query 컴포넌트를 받아, 해당 필드와 로우를 자동으로 셋팅 하는 함수
+    function QueryToGrid(Query: TQuery): Boolean;                                   //Query 컴포넌트를 받아, 해당 필드와 로우를 자동으로 셋팅 하는 함수
+    procedure DrawCell(ACol, ARow: Longint; ARect: TRect;AState: TGridDrawState); override;  //dracell 재정의
   published
     { Published declarations }
   end;
@@ -194,5 +195,14 @@ begin
     end;
   end;
 end;
+
+procedure twondogrid.DrawCell(ACol, ARow: Longint; ARect: TRect;AState: TGridDrawState);
+begin
+  if (ARow = 0) then  //컬럼이 들어가는 로우의 경우 그냥 빠져 나가도록 수정, 컬럼은 SetColumn() 함수로 셋팅
+  begin
+    exit;
+  end;
+  Inherited DrawCell(ACol, ARow, ARect, AState);
+End;
 
 end.
