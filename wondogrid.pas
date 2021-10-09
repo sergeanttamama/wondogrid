@@ -23,7 +23,7 @@ type
     function DeleteValRow(ColNo: Integer; DelVal: AnsiString): integer;             //특정 값을 삭제
     function GetValSum(ColNo: Integer; FindVal: AnsiString): integer;               //특정값의 갯수 리턴
     function ValReplace(ColNo: Integer; BaseVal,ReplaceVal: AnsiString): Boolean;   //특정값을 수정값으로 바꿔줌
-    function QueryToGrid(Query: TQuery): Boolean;
+    function QueryToGrid(Query: TQuery): Boolean;                                     //Query 컴포넌트를 받아, 해당 필드와 로우를 자동으로 셋팅 하는 함수
   published
     { Published declarations }
   end;
@@ -177,7 +177,7 @@ begin
   end;
 end;
 
-//Query 컴포넌트를 받아, 해당 필드와 로우를 자동으로 셋팅, 미완성 함수..! 현재 작업중..!
+//Query 컴포넌트를 받아, 해당 필드와 로우를 자동으로 셋팅 하는 함수
 function twondogrid.QueryToGrid(Query : TQuery) : Boolean;
 var
   i, r : integer;

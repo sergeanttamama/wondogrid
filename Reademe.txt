@@ -1,0 +1,11 @@
+해당 프로젝트는 사용하기 편리한 그리드를 만들고자 만든 프로젝트 입니다.
+아래에 각 함수별 설명을 드리겠습니다.
+
+function SetColumn(StrColumn : AnsiString) : Boolean;                           //컬럼 셋팅, 각 필드는','로 구분함
+function SetRow(StrRow: AnsiString): Boolean;                                     //로우 데이터 셋팅
+function FindRow(Key: AnsiString;KeyColumn : integer): integer;                //키값의 로우값을 리턴
+procedure DeleteRow(ARow: Integer);                                               //로우 데이터 삭제
+function DeleteValRow(ColNo: Integer; DelVal: AnsiString): integer;            //특정 값을 삭제
+function GetValSum(ColNo: Integer; FindVal: AnsiString): integer;               //특정값의 갯수 리턴
+function ValReplace(ColNo: Integer; BaseVal,ReplaceVal: AnsiString): Boolean;//특정값을 수정값으로 바꿔줌
+function QueryToGrid(Query: TQuery): Boolean;                                     //Query 컴포넌트를 받아, 해당 필드와 로우를 자동으로 셋팅 하는 함수
