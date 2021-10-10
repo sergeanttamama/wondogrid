@@ -197,11 +197,19 @@ begin
 end;
 
 procedure twondogrid.DrawCell(ACol, ARow: Longint; ARect: TRect;AState: TGridDrawState);
+var
+ iX, iY : Integer;
 begin
-  if (ARow = 0) then  //컬럼이 들어가는 로우의 경우 그냥 빠져 나가도록 수정, 컬럼은 SetColumn() 함수로 셋팅
+  iY := Rect.Top + 4;
+  // Title은 중앙에 정렬
+  if ARow = 0 then
   begin
-    exit;
+    iX := (Rect.Left + Rect.Right) div 2;
+    SetTextAlign(sg.Canvas.Handle, TA_CENTER );
+    sg.Canvas.TextRect(Rect, iX, iY, sg.Cells[Acol,Arow]);
+    Exit; //컬럼이 들어가는 로우의 경우 그냥 빠져 나가도록 수정, 컬럼은 SetColumn() 함수로 셋팅
   end;
+
   Inherited DrawCell(ACol, ARow, ARect, AState);
 End;
 
