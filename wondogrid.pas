@@ -205,8 +205,8 @@ begin
   if ARow = 0 then
   begin
     iX := (Rect.Left + Rect.Right) div 2;
-    SetTextAlign(sg.Canvas.Handle, TA_CENTER );
-    sg.Canvas.TextRect(Rect, iX, iY, sg.Cells[Acol,Arow]);
+    SetTextAlign(Self.Canvas.Handle, TA_CENTER );
+    Self.Canvas.TextRect(Rect, iX, iY, Self.Cells[Acol,Arow]);
     Exit; //컬럼이 들어가는 로우의 경우 그냥 빠져 나가도록 수정, 컬럼은 SetColumn() 함수로 셋팅
   end;
 
